@@ -15,14 +15,6 @@ public class Platform : MonoBehaviour
     private static GameObject LastPlatform; // последняя платформа
     private Animator anim;
 
-    // установка стартовых значений
-    public static void Reinit()
-    {
-        instCounter = 0;
-        TailCounter = 0;
-        Platforms = new List<Platform>();
-    }
-
     void Start()
     {
         Platforms.Add(this);
@@ -75,7 +67,7 @@ public class Platform : MonoBehaviour
             CreatePos = new Vector3(BasedPlatform.transform.position.x, BasedPlatform.transform.position.y, BasedPlatform.transform.position.z + 1);
         }
 
-        // если это первая созданная платформа, то игроку заносится направление
+        // если это первая созданная платформа, то игроку присваивается направление
         if(instCounter == 0) Player.isRightDim = r == 1;
 
         // создание платформы
@@ -102,5 +94,13 @@ public class Platform : MonoBehaviour
     void Destroy()
     {
         Destroy(gameObject);
+    }
+
+    // установка стартовых значений (для перезапуска)
+    public static void Reinit()
+    {
+        instCounter = 0;
+        TailCounter = 0;
+        Platforms = new List<Platform>();
     }
 }

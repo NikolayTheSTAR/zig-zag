@@ -17,13 +17,6 @@ public class Player : MonoBehaviour
         SumActivePlatform = 1;
     }
 
-    // установка стартовых значений
-    void Reinit()
-    {
-        isDie = false;
-        isLife = false;
-    }
-
     void Update()
     {
         if (isLife)
@@ -80,5 +73,12 @@ public class Player : MonoBehaviour
         Platform.Reinit();
         Score.Reinit();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // установка стартовых значений (для перезапуска)
+    void Reinit()
+    {
+        isDie = false;
+        isLife = false;
     }
 }

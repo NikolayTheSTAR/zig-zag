@@ -18,7 +18,7 @@ public class Score : MonoBehaviour
         t.text = Convert.ToString(ScoreCount);
     }
 
-    // установка стартовых значений
+    // установка стартовых значений (для перезапуска)
     public static void Reinit()
     {
         ScoreCount = 0;
