@@ -15,6 +15,7 @@ public class Platform : MonoBehaviour
     private static GameObject LastPlatform; // последняя платформа
     private Animator anim;
 
+    // установка стартовых значений
     public static void Reinit()
     {
         instCounter = 0;

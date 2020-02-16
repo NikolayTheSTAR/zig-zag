@@ -6,17 +6,18 @@ public class Player : MonoBehaviour
     [SerializeField] private float Speed = 3;
 
     public static bool isRightDim = true; // истинно, когда шар катится вправо
-    public static bool isLife;
-    public static bool isDie = false;
-    private int SumActiveCube;
+    public static bool isLife; // истинно, если шар катится
+    public static bool isDie = false; // истинно, если шар упал
+    private int SumActivePlatform; // сумма платформ, которых касается игрок
     private float Step; // расстояние, на которое шар сдвигается за кадр
 
     void Start ()
     {
         isLife = false;
-        SumActiveCube = 1;
+        SumActivePlatform = 1;
     }
 
+    // установка стартовых значений
     void Reinit()
     {
         isDie = false;
@@ -31,10 +32,12 @@ public class Player : MonoBehaviour
 
             if (isRightDim)
             {
+                // перемещение вправо
                 transform.Translate(0, 0, Step);
             }
             else
             {
+                // перемещение вверх
                 transform.Translate(-Step, 0, 0);
             }
         }
@@ -44,8 +47,7 @@ public class Player : MonoBehaviour
     {
         if (isLife & col.tag == "Platform")
         {
-            SumActiveCube++;
-
+            SumActivePlatform++;
             Platform.CreateNextPlatform();
         }
     }
@@ -54,15 +56,16 @@ public class Player : MonoBehaviour
     {
         if (isLife & col.tag == "Platform")
         {
-            SumActiveCube--;
+            SumActivePlatform--;
 
-            if (SumActiveCube <= 0)
+            if (SumActivePlatform <= 0)
             {
                 Die();
             }
         }
     }
-
+    
+    // поражение
     private void Die()
     {
         isLife = false;
